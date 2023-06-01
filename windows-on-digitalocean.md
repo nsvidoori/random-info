@@ -12,6 +12,11 @@
 * gzip image
 * move image to do using recovery mode
 * wget > gunzip > dd of=/dev/vda
+
+```
+wget -O- --no-check-certificate https://[your site here]/windows.gz | gunzip | dd of=/dev/vda
+```
+
 * setup digitalocean firewall 
 * use recovery console to install drivers
 * disable windows firewall, rely on digitalocean firewall only open to your ip
@@ -20,5 +25,15 @@
 * reboot to oobe, no generalize
 * set password, then mstsc
 * extend partition with diskpart (easy way - remove recovery partition)
-* select disk 0, select partition 3, delete partition override
+
+``` 
+reagentc /disable 
+diskpart 
+list disk
+select disk 0
+list partition
+select partition 3
+delete partition override
+```
+
 * diskmgmt.msc to extend windows partition
